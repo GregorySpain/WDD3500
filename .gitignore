@@ -1,1 +1,6 @@
-/env
+build/
+dist/
+lib/
+env/
+venv/
+/.idea/

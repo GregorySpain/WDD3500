@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block species %}Animals{% endblock %}
+{% block content %}
+  <h1>Animals</h1>
+    <ul>
+<!--        I simply added a link back to the home route-->
+        <li><a href="{{ url_for('home_page') }}">Home</a></li>
+    </ul>
+{% endblock %}
