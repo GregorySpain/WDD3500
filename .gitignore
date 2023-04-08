@@ -4,4 +4,4 @@ lib/
 env/
 venv/
 /.idea/
-__pychahce__/
+./mywebapp/__pycache__/
