@@ -1,9 +1,18 @@
 {% extends "layout.html" %}
 {% block species %}Animals{% endblock %}
 {% block content %}
-  <h1>Animals</h1>
-    <ul>
-<!--        I simply added a link back to the home route-->
-        <li><a href="{{ url_for('home_page') }}">Home</a></li>
-    </ul>
+    <h1 class="species">Animals</h1>
+
+    {% if animals %}
+        <table class="table is-striped is-fullwidth">
+            {% for animal_key, animal in animals %}
+            <tr>
+                <td>
+                    {{ animal.species }}
+                    {% if animal.year %} ({{ animal.year }}) {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
 {% endblock %}

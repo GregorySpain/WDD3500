@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block species %}Animal{% endblock %}
+{% block content %}
+    <h1 class="species">Animals</h1>
+
+        <table class="table">
+            <tr>
+                <th>Species</th>
+                <td>{{ animal.species }}</td>
+            </tr>
+            {% if animal.year %}
+            <tr>
+                <th>Year:</th>
+                <td>({{ animal.year }})</td>
+            </tr>
+            {% endif %}
+        </table>
+{% endblock %}

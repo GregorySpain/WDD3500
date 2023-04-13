@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import render_template
+from flask import current_app, render_template
 
 def home_page():
     today = datetime.today()
@@ -8,4 +8,12 @@ def home_page():
 
 
 def animals_page():
-    return render_template("animals.html")
+    db = current_app.config["db"]
+    animals = db.get_animals()
+    return render_template("animals.html", animals=sorted(animals))
+
+
+def animal_page(animal_key):
+    db = current_app.config["db"]
+    animal = db.get_animal(animal_key)
+    return render_template("animal.html", animal=animal)
