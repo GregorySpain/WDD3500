@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block species %}Add/Edit Animal{% endblock %}
+{% block content %}
+    <h1 class="species">Add/Edit Animal</h1>
+
+    <form action="" method="POST" name="animal_edit">
+        <div class="field">
+            <label for="species" class="label">Species</label>
+            <div class="control">
+                <input type="text" name="species" class="input" required="required" />
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="year" class="label">Year</label>
+            <div class="control">
+                <input type="number" name="year" class="input" min="{{ min_year }}" max="{{ max_year }}" />
+            </div>
+        </div>
+
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-primary is-small">Save</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

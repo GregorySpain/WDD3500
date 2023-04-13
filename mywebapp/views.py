@@ -1,5 +1,6 @@
 from datetime import datetime
-from flask import current_app, render_template
+from flask import current_app, render_template, request, redirect, url_for
+from animal import Animal
 
 
 def home_page():
@@ -23,6 +24,18 @@ def animal_page(animal_key):
     if animal is None:
         return page_not_found(404)
     return render_template("animal.html", animal=animal)
+
+
+def animal_add_page():
+    if request.method == "GET":
+        return render_template("edit_animal.html", min_year=1887, max_year=datetime.now().year)
+    else:
+        form_species = request.form["species"]
+        form_year = request.form["year"]
+        animal = Animal(form_species, year=int(form_year) if form_year else None)
+        db = current_app.config["db"]
+        animal_key = db.add_animal(animal)
+        return redirect(url_for("animal_page", animal_key=animal_key))
 
 
 def page_not_found(error):

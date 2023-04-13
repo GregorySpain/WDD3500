@@ -10,14 +10,19 @@
 <body>
     <div class="wrapper">
         <header class="page-header">
-        <nav class="level">
-            <ul class="level-left">
-                <div class="level-item">
-                    <li><a class="button  is-link" href="{{ url_for('home_page') }}">Home</a></li>
-                </div><div class="level-item">
-                    <li><a class="button is-link" href="{{ url_for('animals_page') }}">List Animals</a></li>
-                </div>
-            </ul>
+            <!-- class="level" -->
+        <nav>
+            <div class="navbar-brand">
+                <span class="navbar-item">
+                    <a class="button  is-link" href="{{ url_for('home_page') }}">Home</a>
+                </span>
+                <span class="navbar-item">
+                    <a class="button is-link" href="{{ url_for('animals_page') }}">List Animals</a>
+                </span>
+                <span class="navbar-item">
+                    <a class="button is-link" href="{{ url_for('animal_add_page') }}">Add Animal</a>
+                </span>
+            </div>
         </nav>
     </header>
         <main class="page-body">
