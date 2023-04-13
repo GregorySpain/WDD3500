@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block species %}Page Not Found{% endblock %}
+{% block content %}
+    <h1 class="species">Page Not Found!</h1>
+    <p>Sorry, we couldn't find what you were looking for.</p>
+<a href="{{ url_for('home_page')}}" class="button">Home</a>
+{% endblock %}

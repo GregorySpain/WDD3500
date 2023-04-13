@@ -8,7 +8,9 @@
             {% for animal_key, animal in animals %}
             <tr>
                 <td>
-                    {{ animal.species }}
+                    <!-- (3.4) I simply put the species name in an anchor tag and used url_for, passing the animal_key
+                         as the variable that matches the name in the <> of the matching app.add_url_rule -->
+                    <a href="{{ url_for('animal_page', animal_key=animal_key) }}">{{ animal.species }}</a>
                     {% if animal.year %} ({{ animal.year }}) {% endif %}
                 </td>
             </tr>

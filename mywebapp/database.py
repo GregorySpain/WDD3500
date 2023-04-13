@@ -1,5 +1,6 @@
 from animal import Animal
 
+
 class Database:
     def __init__(self):
         self.animals = {}

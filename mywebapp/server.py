@@ -10,6 +10,8 @@ def create_app():
     app.add_url_rule("/", view_func=views.home_page)
     app.add_url_rule("/animals", view_func=views.animals_page)
     app.add_url_rule("/animals/<int:animal_key>", view_func=views.animal_page)
+    app.register_error_handler(404, views.page_not_found)
+
 
     db = Database()
     db.add_animal(Animal("Red Panda", year=2020))
