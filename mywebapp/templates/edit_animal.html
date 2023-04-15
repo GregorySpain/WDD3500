@@ -7,14 +7,16 @@
         <div class="field">
             <label for="species" class="label">Species</label>
             <div class="control">
-                <input type="text" name="species" class="input" required="required" />
+                <input type="text" name="species" class="input" required="required"
+                       value="{% if animal.species %}{{ animal.species }}{% else %}{{''}}{% endif %}"/>
             </div>
         </div>
 
         <div class="field">
             <label for="year" class="label">Year</label>
             <div class="control">
-                <input type="number" name="year" class="input" min="{{ min_year }}" max="{{ max_year }}" />
+                <input type="number" name="year" class="input" min="{{ min_year }}" max="{{ max_year }}"
+                       value="{% if animal.year %}{{ animal.year }}{% else %}{{''}}{% endif %}"/>
             </div>
         </div>
 

@@ -15,6 +15,9 @@ class Database:
         if animal_key in self.animals:
             del self.animals[animal_key]
 
+    def edit_animal(self, animal_key, animal):
+        self.animals[animal_key] = animal
+
     def get_animal(self, animal_key):
         animal = self.animals.get(animal_key)
         if animal is None:

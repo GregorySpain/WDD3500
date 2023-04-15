@@ -29,18 +29,36 @@ def animal_page(animal_key):
     # a basic conditional.
     if animal is None:
         return page_not_found(404)
-    return render_template("animal.html", animal=animal)
+    return render_template("animal.html", animal=animal, animal_key=animal_key)
 
 
-def animal_add_page():
+def add_animal_page():
     if request.method == "GET":
-        return render_template("edit_animal.html", min_year=1887, max_year=datetime.now().year)
+        return render_template("edit_animal.html", animal=None, min_year=1887, max_year=datetime.now().year)
     else:
         form_species = request.form["species"]
         form_year = request.form["year"]
         animal = Animal(form_species, year=int(form_year) if form_year else None)
         db = current_app.config["db"]
         animal_key = db.add_animal(animal)
+        return redirect(url_for("animal_page", animal_key=animal_key))
+
+
+# Exercise 6 - I changed around the functions for adding and editing animals, and registered the routes with
+# to call the different functions. Then on the edit animal page I used conditionals in the value fields of the
+# form to optionally put in the existing name and year. I also created an edit_animal function in the database
+# to edit the existing animal_key rather than create a new one.
+def edit_animal_page(animal_key):
+    if request.method == "GET":
+        db = current_app.config["db"]
+        animal = db.get_animal(animal_key)
+        return render_template("edit_animal.html", animal=animal, min_year=1887, max_year=datetime.now().year)
+    else:
+        form_species = request.form["species"]
+        form_year = request.form["year"]
+        animal = Animal(form_species, year=int(form_year) if form_year else None)
+        db = current_app.config["db"]
+        db.edit_animal(animal_key, animal)
         return redirect(url_for("animal_page", animal_key=animal_key))
 
 
