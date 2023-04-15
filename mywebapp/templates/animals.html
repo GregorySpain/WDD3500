@@ -4,10 +4,14 @@
     <h1 class="species">Animals</h1>
 
     {% if animals %}
+        <form action="" method="post" name="animal_list">
         <table class="table is-striped is-fullwidth">
             {% for animal_key, animal in animals %}
             <tr>
                 <td>
+                    <label class="checkbox">
+                        <input type="checkbox" name="animal_keys" value="{{ animal_key }}">
+                    </label>
                     <!-- (3.4) I simply put the species name in an anchor tag and used url_for, passing the animal_key
                          as the variable that matches the name in the <> of the matching app.add_url_rule -->
                     <a href="{{ url_for('animal_page', animal_key=animal_key) }}">{{ animal.species }}</a>
@@ -16,5 +20,11 @@
             </tr>
             {% endfor %}
         </table>
+            <div class="field is-grouped">
+                    <div class="control">
+                        <button class="button is-danger is-small">Delete</button>
+                    </div>
+                </div>
+            </form>
     {% endif %}
 {% endblock %}

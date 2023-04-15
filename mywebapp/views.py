@@ -11,8 +11,14 @@ def home_page():
 
 def animals_page():
     db = current_app.config["db"]
-    animals = db.get_animals()
-    return render_template("animals.html", animals=sorted(animals))
+    if request.method == "GET":
+        animals = db.get_animals()
+        return render_template("animals.html", animals=sorted(animals))
+    else:
+        form_animal_keys = request.form.getlist("animal_keys")
+        for form_animal_key in form_animal_keys:
+            db.delete_animal(int(form_animal_key))
+        return redirect(url_for("animals_page"))
 
 
 def animal_page(animal_key):
